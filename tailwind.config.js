@@ -9,7 +9,8 @@ module.exports = {
         blue: '#4DA8DA',
         red: '#C15645',
         green: '#57AC71',
-        orange: '#C18445'
+        orange: '#C18445',
+        gray_light: '#E4E4E4'
       }
     },
   },

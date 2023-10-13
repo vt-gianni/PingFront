@@ -8,7 +8,7 @@ export default function IndexScreen() {
 
     useEffect(() => {
         setTimeout(() => {
-            router.replace('tutorial');
+            router.replace('login');
         }, 1)
     }, [])
 
