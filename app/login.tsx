@@ -7,7 +7,7 @@ import useApi from "../contexts/useApi";
 
 export default function LoginScreen() {
 
-    const { query, login } = useApi();
+    const { login } = useApi();
 
     const tailwind = useTailwind();
 
@@ -55,6 +55,7 @@ export default function LoginScreen() {
                     <PCButton
                         label="Connexion"
                         onPress={handleLogin}
+                        disabled={username.length === 0 || password.length === 0}
                     />
                 </View>
             </View>

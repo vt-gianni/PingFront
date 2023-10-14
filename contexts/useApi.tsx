@@ -44,8 +44,18 @@ const useApi = () => {
 
   const login = useMutation(
     async ({ username, password }: { username: string, password: string }) => {
-      const response = await axios.post(apiUrl + '/login', { username, password }, { withCredentials: false });
-      return response.data;
+      try {
+        const response = await axios.post(apiUrl + '/login', { username, password }, { withCredentials: false });
+        return response.data;
+      } catch (error) {
+        if (error.response && error.response.data) {
+          // Rejetez l'erreur avec le message retourné par l'API
+          throw new Error(error.response.data.message || 'Erreur de connexion');
+        } else {
+          // Si l'erreur n'a pas de réponse ou de données, rejetez une erreur générale
+          throw new Error('Erreur de connexion');
+        }
+      }
     },
     {
       onSuccess: (data) => {

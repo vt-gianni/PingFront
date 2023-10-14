@@ -4,6 +4,8 @@ import { useTailwind } from "tailwind-rn";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import PCButton from "../components/PCButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 
 const tutorialTabs = [
     {
@@ -70,7 +72,7 @@ function TutorialTab({ pageIndex, tab }: { pageIndex: string, tab: { title: stri
             <Text style={tailwind('text-gray p-5 text-center text-lg')}>{tab.content}</Text>
             {
                 tab.button &&
-                <PCButton label="C'est compris !" />
+                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('index'))}/>
             }
         </View>
     )

@@ -1,10 +1,9 @@
-import { TailwindProvider } from "tailwind-rn";
-import utilities from "../tailwind.json";
+import Constants from "expo-constants";
 import { Slot } from "expo-router";
 import { View } from "react-native";
-import Constants from "expo-constants";
-import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "../tailwind.json";
 
 const queryClient = new QueryClient();
 

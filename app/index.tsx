@@ -1,20 +1,31 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { useEffect, useLayoutEffect } from "react";
-import { Text, View } from "react-native";
-import { useTailwind } from "tailwind-rn";
+import { useEffect } from "react";
+import { View, Text } from "react-native";
 
-export default function IndexScreen() {
-    const tailwind = useTailwind();
+export default function HomeScreen() {
 
     useEffect(() => {
-        setTimeout(() => {
-            router.replace('login');
-        }, 1)
+        AsyncStorage.getItem('tutorialDone')
+            .then((value) => {
+                if (value === null) {
+                    return router.push('tutorial')
+                }
+
+                AsyncStorage.getItem('token')
+                    .then((value) => {
+                        if (value === null) {
+                            return router.push('login')
+                        }
+
+                        return router.push('index')
+                    })
+            })
     }, [])
 
     return (
-        <View style={tailwind('flex-1')}>
-            <Text style={tailwind('font-bold')}>OUI</Text>
+        <View>
+            <Text>Home</Text>
         </View>
     )
 }
