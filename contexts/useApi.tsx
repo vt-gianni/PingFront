@@ -62,7 +62,7 @@ const useApi = () => {
         setToken(data.token);
         AsyncStorage.setItem('token', data.token);
         AsyncStorage.setItem('refreshToken', data.refresh_token);
-        router.replace('home');
+        router.push('home');
       },
       onError: (error) => {
         console.error('Login failed:', error);

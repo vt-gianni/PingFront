@@ -72,7 +72,7 @@ function TutorialTab({ pageIndex, tab }: { pageIndex: string, tab: { title: stri
             <Text style={tailwind('text-gray p-5 text-center text-lg')}>{tab.content}</Text>
             {
                 tab.button &&
-                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('index'))}/>
+                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('home'))}/>
             }
         </View>
     )

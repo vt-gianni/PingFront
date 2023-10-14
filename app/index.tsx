@@ -1,10 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useEffect } from "react";
-import { View, Text } from "react-native";
 
-export default function HomeScreen() {
-
+export default function Page() {
     useEffect(() => {
         AsyncStorage.getItem('tutorialDone')
             .then((value) => {
@@ -17,15 +15,11 @@ export default function HomeScreen() {
                         if (value === null) {
                             return router.push('login')
                         }
-
-                        return router.push('index')
+                        
+                        return router.push('home')
                     })
             })
     }, [])
 
-    return (
-        <View>
-            <Text>Home</Text>
-        </View>
-    )
+    return <></>
 }
