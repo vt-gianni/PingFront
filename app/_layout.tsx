@@ -1,6 +1,6 @@
-import Constants from "expo-constants";
-import { Slot } from "expo-router";
-import { View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Stack, router } from "expo-router";
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { TailwindProvider } from "tailwind-rn";
 import utilities from "../tailwind.json";
@@ -8,13 +8,25 @@ import utilities from "../tailwind.json";
 const queryClient = new QueryClient();
 
 export default function Layout() {
+    
+    useEffect(() => {
+        AsyncStorage.getItem('tutorialDone')
+        .then((tutorialDone) => {
+            if (tutorialDone === 'true') {
+                router.push('(tabs)')
+            }
+        });
+    }, [])
+
     return (
         // @ts-ignore
         <TailwindProvider utilities={utilities}>
             <QueryClientProvider client={queryClient}>
-                <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                    <Slot />
-                </View>
+                <Stack>
+                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                    <Stack.Screen name="login" options={{ headerShown: false }} />
+                    <Stack.Screen name="tutorial" options={{ headerShown: false }} />
+                </Stack>
             </QueryClientProvider>
         </TailwindProvider>
     )

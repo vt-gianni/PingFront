@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import PCButton from "../components/PCButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
+import Constants from "expo-constants";
+
 
 const tutorialTabs = [
     {
@@ -31,8 +33,8 @@ export default function TutorialScreen() {
     const [currentPage, setCurrentPage] = useState(0);
 
     return (
-        <View style={tailwind('flex-1')}>
-            <PagerView style={tailwind('flex-1 bg-bg_white')} initialPage={0} onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}>
+        <View style={{...tailwind('flex-1 bg-bg_white'), paddingTop: Constants.statusBarHeight}}>
+            <PagerView style={tailwind('flex-1')} initialPage={0} onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}>
                 {
                     tutorialTabs.map((tab, index) => {
                         return (
@@ -72,7 +74,7 @@ function TutorialTab({ pageIndex, tab }: { pageIndex: string, tab: { title: stri
             <Text style={tailwind('text-gray p-5 text-center text-lg')}>{tab.content}</Text>
             {
                 tab.button &&
-                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('home'))}/>
+                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('(tabs)'))}/>
             }
         </View>
     )
