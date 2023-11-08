@@ -33,7 +33,7 @@ export default function TutorialScreen() {
     const [currentPage, setCurrentPage] = useState(0);
 
     return (
-        <View style={{...tailwind('flex-1 bg-bg_white'), paddingTop: Constants.statusBarHeight}}>
+        <View style={{ ...tailwind('flex-1 bg-bg_white'), paddingTop: Constants.statusBarHeight }}>
             <PagerView style={tailwind('flex-1')} initialPage={0} onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}>
                 {
                     tutorialTabs.map((tab, index) => {
@@ -45,13 +45,13 @@ export default function TutorialScreen() {
             </PagerView>
             <View style={tailwind('w-full h-16 items-center')}>
                 <View style={tailwind('w-1/2 flex-row justify-between')}>
-                {
-                    tutorialTabs.map((_, index) => {
-                        return (
-                            <View key={`dot-${index}`} style={tailwind(`w-5 h-5 rounded-full ${index === currentPage ? 'bg-blue' : 'bg-gray'}`)}></View>
-                        )
-                    })
-                }
+                    {
+                        tutorialTabs.map((_, index) => {
+                            return (
+                                <View key={`dot-${index}`} style={tailwind(`w-5 h-5 rounded-full ${index === currentPage ? 'bg-blue' : 'bg-gray'}`)}></View>
+                            )
+                        })
+                    }
                 </View>
             </View>
         </View>
@@ -63,18 +63,18 @@ function TutorialTab({ pageIndex, tab }: { pageIndex: string, tab: { title: stri
     return (
         <View key={pageIndex} style={tailwind('flex-1 items-center')}>
             <Image
-                source={tab.image} 
-                style={tailwind('w-full h-1/2')} 
+                source={tab.image}
+                style={tailwind('w-full h-1/2')}
                 contentFit="contain"
                 onError={(event) => console.log(event)}
                 placeholder={"'|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';"}
                 transition={1000}
-           />
+            />
             <Text style={tailwind('font-bold text-2xl')}>{tab.title}</Text>
             <Text style={tailwind('text-gray p-5 text-center text-lg')}>{tab.content}</Text>
             {
                 tab.button &&
-                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('(tabs)'))}/>
+                <PCButton label="C'est compris !" onPress={() => AsyncStorage.setItem('tutorialDone', "true", () => router.replace('(tabs)'))} size="medium" />
             }
         </View>
     )

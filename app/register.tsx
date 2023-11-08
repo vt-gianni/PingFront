@@ -1,22 +1,20 @@
-import { router } from "expo-router";
-import { useState } from "react";
-import { TextInput, View } from "react-native";
-import { useTailwind } from "tailwind-rn";
-import LoginHeader from "../components/LoginHeader";
-import PCButton from "../components/PCButton";
-import useApi from "../contexts/useApi";
+import React, { useState } from 'react'
+import { TextInput, View } from 'react-native'
+import { useTailwind } from 'tailwind-rn';
+import LoginHeader from '../components/LoginHeader';
+import PCButton from '../components/PCButton';
+import { router } from 'expo-router';
+import useApi from '../contexts/useApi';
 
-export default function LoginScreen() {
-
-    const { login } = useApi();
-
+export default function RegisterScreen() {
+    const { register } = useApi();
     const tailwind = useTailwind();
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async () => {
-        login.mutate({ username, password });
+    const handleRegister = async () => {
+        register.mutate({ email, password });
     };
 
     return (
@@ -26,8 +24,8 @@ export default function LoginScreen() {
                 <View style={{ ...tailwind('w-full flex-col items-center justify-between'), gap: 40 }}>
                     <TextInput
                         placeholder="Adresse email"
-                        value={username}
-                        onChangeText={setUsername}
+                        value={email}
+                        onChangeText={setEmail}
                         style={tailwind('w-full p-5 bg-gray_light')}
                         autoCapitalize="none"
                     />
@@ -42,18 +40,19 @@ export default function LoginScreen() {
                     />
 
                     <PCButton
-                        label="Connexion"
-                        onPress={handleLogin}
-                        disabled={username.length === 0 || password.length === 0}
+                        label="Inscription compétiteur"
+                        onPress={handleRegister}
+                        disabled={email.length === 0 || password.length === 0}
+                        bgColor='red'
                     />
 
                     <PCButton
-                        label="Créer un compte"
+                        label="Je suis un club / professionnel"
                         onPress={() => {
-                            router.push('register')
+                            router.push('registerpro')
                         }}
                         withBackground={false}
-                        textColor="blue"
+                        textColor="orange"
                     />
                 </View>
             </View>
