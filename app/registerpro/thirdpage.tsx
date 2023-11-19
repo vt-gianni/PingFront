@@ -8,7 +8,7 @@ import RegisterProContext from '../../contexts/RegisterProContext';
 
 export default function RegisterProThirdScreen() {
     const tailwind = useTailwind();
-    const { } = useContext(RegisterProContext);
+    const { user, updateUser, handleRegister } = useContext(RegisterProContext);
 
     return (
         <View style={tailwind('flex-1')}>
@@ -24,30 +24,28 @@ export default function RegisterProThirdScreen() {
                 <Text style={tailwind('text-2xl font-bold')}>Informations de paiement</Text>
                 <TextInput
                     placeholder="Titulaire du compte"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.accountHolder}
+                    onChangeText={(value) => { updateUser("accountHolder", value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="IBAN"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.iban}
+                    onChangeText={(value) => { updateUser("iban", value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="BIC"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.bic}
+                    onChangeText={(value) => { updateUser("bic", value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <PCButton
                     label="Inscription club / professionnel"
-                    onPress={() => {
-
-                    }}
+                    onPress={handleRegister}
                     disabled={false}
                     bgColor='orange'
                 />

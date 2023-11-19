@@ -82,6 +82,7 @@ const useApi = () => {
     async (user: User) => {
       try {
         const response = await axios.post(apiUrl + '/users', { ...user }, { withCredentials: false });
+
         return { ...response.data, password: user.password };
       } catch (error) {
         if (error.response && error.response.data) {

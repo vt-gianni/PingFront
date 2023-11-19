@@ -1,3 +1,5 @@
+import { Club } from "./club";
+
 export interface User {
   email: string;
   password: string;
@@ -7,6 +9,9 @@ export interface User {
   licenceNumber?: string;
   officialPoints?: number;
   birthdate?: string;
-  club?: string;
+  club?: Club;
   sexe?: string;
+  accountHolder?: string;
+  iban?: string;
+  bic?: string;
 }

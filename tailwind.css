@@ -42,18 +42,6 @@
   width: 100%
 }
 
-.w-auto {
-  width: auto
-}
-
-.w-fit {
-  width: fit-content
-}
-
-.w-max {
-  width: max-content
-}
-
 .flex-1 {
   flex: 1 1 0%
 }
@@ -138,10 +126,6 @@
   padding: 1.25rem
 }
 
-.p-2 {
-  padding: 0.5rem
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem
@@ -166,16 +150,6 @@
   line-height: 1.75rem
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem
-}
-
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1
-}
-
 .font-bold {
   font-weight: 700
 }
@@ -184,19 +158,14 @@
   font-weight: 500
 }
 
-.text-gray {
-  --tw-text-opacity: 1;
-  color: rgb(119 119 119 / var(--tw-text-opacity))
-}
-
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity))
-}
-
 .text-blue {
   --tw-text-opacity: 1;
   color: rgb(77 168 218 / var(--tw-text-opacity))
+}
+
+.text-gray {
+  --tw-text-opacity: 1;
+  color: rgb(119 119 119 / var(--tw-text-opacity))
 }
 
 .text-orange {
@@ -209,9 +178,9 @@
   color: rgb(193 86 69 / var(--tw-text-opacity))
 }
 
-.text-gray_light {
+.text-white {
   --tw-text-opacity: 1;
-  color: rgb(228 228 228 / var(--tw-text-opacity))
+  color: rgb(255 255 255 / var(--tw-text-opacity))
 }
 
 .underline {

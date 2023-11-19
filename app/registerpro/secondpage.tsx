@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 
 export default function RegisterProSecondScreen() {
     const tailwind = useTailwind();
-    const { } = useContext(RegisterProContext);
+    const { user, updateClub } = useContext(RegisterProContext);
 
     return (
         <View style={tailwind('flex-1')}>
@@ -24,64 +24,64 @@ export default function RegisterProSecondScreen() {
                 <Text style={tailwind('text-2xl font-bold')}>Informations du club</Text>
                 <TextInput
                     placeholder="Nom"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.name}
+                    onChangeText={(value) => { updateClub('name', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Ville"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.city}
+                    onChangeText={(value) => { updateClub('city', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Code postal"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.zipCode}
+                    onChangeText={(value) => { updateClub('zipCode', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Adresse"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.address}
+                    onChangeText={(value) => { updateClub('address', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Complément d'adresse"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.addressMore}
+                    onChangeText={(value) => { updateClub('addressMore', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Numéro d'identifiant"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.number}
+                    onChangeText={(value) => { updateClub('number', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Nom du complexe"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.gym}
+                    onChangeText={(value) => { updateClub('gym', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Adresse mail de contact"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.mailAddress}
+                    onChangeText={(value) => { updateClub('mailAddress', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
                 <TextInput
                     placeholder="Téléphone de contact"
-                    value={""}
-                    onChangeText={(value) => { }}
+                    value={user.club.phone}
+                    onChangeText={(value) => { updateClub('phone', value) }}
                     style={tailwind('w-full p-5 bg-gray_light')}
                     autoCapitalize="none"
                 />
