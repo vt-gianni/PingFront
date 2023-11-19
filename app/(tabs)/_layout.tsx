@@ -12,9 +12,11 @@ export default function TabLayout() {
         return;
     }, [])
 
+
     return (
         <Tabs
             detachInactiveScreens={true}
+            screenOptions={{ headerShown: false }}
         >
             <Tabs.Screen name="index" />
             <Tabs.Screen name="my-tournaments" listeners={{ focus: checkConnection }} />

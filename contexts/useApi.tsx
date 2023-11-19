@@ -9,18 +9,18 @@ const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
 const useApi = () => {
   const queryClient = useQueryClient();
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
 
-  const loadToken = useCallback(async () => {
-    const savedToken = await AsyncStorage.getItem('token');
-    setToken(savedToken);
-  }, []);
+  // const loadToken = useCallback(async () => {
+  //   const savedToken = await AsyncStorage.getItem('token');
+  //   setToken(savedToken);
+  // }, []);
 
   const refreshToken = useCallback(async () => {
     try {
-      const response = await axios.post('/refresh-token', { token: await AsyncStorage.getItem('refreshToken') });
+      const response = await axios.post('/token/refresh', { refresh_token: await AsyncStorage.getItem('refreshToken') }, { withCredentials: false });
       const newToken = response.data.token;
-      setToken(newToken);
+      // setToken(newToken);
       await AsyncStorage.setItem('token', newToken);
     } catch (error) {
       console.error('Failed to refresh token:', error);
@@ -30,10 +30,11 @@ const useApi = () => {
 
   const requestInterceptor = useCallback(async (config) => {
     if (config.withCredentials !== false) {
+      const token = await AsyncStorage.getItem('token');
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-  }, [token]);
+  }, []);
 
   const responseInterceptor = useCallback(async (error) => {
     if (error.response && error.response.status === 401 && error.config.withCredentials) {
@@ -67,7 +68,7 @@ const useApi = () => {
     },
     {
       onSuccess: (data) => {
-        setToken(data.token);
+        // setToken(data.token);
         AsyncStorage.setItem('token', data.token);
         AsyncStorage.setItem('refreshToken', data.refresh_token);
         router.push('home');
@@ -112,17 +113,18 @@ const useApi = () => {
     }
   );
 
-  useEffect(() => {
-    loadToken();
-  }, [loadToken]);
+  // useEffect(() => {
+  //   loadToken();
+  // }, [loadToken]);
 
   axios.interceptors.request.use(requestInterceptor);
   axios.interceptors.response.use(undefined, responseInterceptor);
+  axios.defaults.baseURL = apiUrl;
 
   const query = useQuery;
   const mutate = useMutation;
 
-  return { query, login, register };
+  return { query, login, register, axios };
 };
 
 export default useApi;
