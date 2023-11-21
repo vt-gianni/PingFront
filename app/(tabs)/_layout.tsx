@@ -1,4 +1,4 @@
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Tabs, router } from "expo-router";
 import { useCallback } from "react";
@@ -27,16 +27,17 @@ export default function TabLayout() {
                 tabBarShowLabel: false,
             }}
         >
-            <Tabs.Screen name="index" options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="index" /> }} />
+            <Tabs.Screen name="index" options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="home" /> }} />
             <Tabs.Screen name="my-tournaments" listeners={{ focus: checkConnection }} options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="my-tournaments" /> }} />
             <Tabs.Screen name="profile" listeners={{ focus: checkConnection }} options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="profile" /> }} />
+            <Tabs.Screen name="user-edit" options={{ href: null }} />
         </Tabs>
     )
 }
 
 const TabIcon = ({ name, focused }: { name: string, focused: boolean }) => {
 
-    const iconName = name === 'index' ? 'list' : name === 'my-tournaments' ? 'table-tennis' : 'user';
+    const iconName = name === 'home' ? 'list' : name === 'my-tournaments' ? 'table-tennis' : 'user';
 
     return (
         <FontAwesome5 name={iconName} color={focused ? "white" : "darkgrey"} size={25} solid />

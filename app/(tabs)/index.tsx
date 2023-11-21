@@ -7,18 +7,9 @@ import { useTailwind } from "tailwind-rn";
 import Avatar from "../../components/Avatar";
 import TournamentCard from "../../components/TournamentCard";
 import useApi from "../../contexts/useApi";
-import { Tournament, TournamentResponse } from "../../types/tournament";
-import { User } from "../../types/user";
-
-const fetchUser = async (axios: AxiosStatic) => {
-    const response = await axios.get('/users/1', { withCredentials: true });
-    return response.data;
-}
-
-const fetchTournaments = async (axios: AxiosStatic) => {
-    const response = await axios.get('/tournaments', { withCredentials: true });
-    return response.data;
-}
+import { Tournament, TournamentResponse, fetchTournaments } from "../../types/tournament";
+import { User, fetchUser } from "../../types/user";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
 
@@ -77,7 +68,10 @@ export default function HomeScreen() {
                 >
                     Historique
                 </Text>
-                <TouchableOpacity style={tailwind('px-5 flex items-center justify-center')}>
+                <TouchableOpacity
+                    style={tailwind('px-5 flex items-center justify-center')}
+                    onPress={() => router.push('user-edit')}
+                >
                     <FontAwesome name="sliders" size={28} />
                 </TouchableOpacity>
             </View>

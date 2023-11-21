@@ -1,3 +1,5 @@
+import { AxiosStatic } from "axios";
+
 export interface Tournament {
   city: string;
   zipCode: string;
@@ -16,3 +18,8 @@ export interface TournamentResponse {
     "hydra:member": Tournament[];
   };
 }
+
+export const fetchTournaments = async (axios: AxiosStatic) => {
+  const response = await axios.get("/tournaments", { withCredentials: true });
+  return response.data;
+};

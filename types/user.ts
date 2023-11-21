@@ -1,6 +1,8 @@
+import { AxiosStatic } from "axios";
 import { Club } from "./club";
 
 export interface User {
+  id?: string;
   email: string;
   password: string;
   firstName?: string;
@@ -15,3 +17,8 @@ export interface User {
   iban?: string;
   bic?: string;
 }
+
+export const fetchUser = async (axios: AxiosStatic) => {
+  const response = await axios.get("/users/1", { withCredentials: true });
+  return response.data;
+};
