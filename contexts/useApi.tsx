@@ -18,7 +18,9 @@ const useApi = () => {
 
   const refreshToken = useCallback(async () => {
     try {
-      const response = await axios.post('/token/refresh', { refresh_token: await AsyncStorage.getItem('refreshToken') }, { withCredentials: false });
+      const refreshToken = await AsyncStorage.getItem('refreshToken');
+      if (!refreshToken) throw new Error('No refresh token');
+      const response = await axios.post('/token/refresh', { refresh_token: refreshToken }, { withCredentials: false });
       const newToken = response.data.token;
       // setToken(newToken);
       await AsyncStorage.setItem('token', newToken);
@@ -38,6 +40,7 @@ const useApi = () => {
 
   const responseInterceptor = useCallback(async (error) => {
     if (error.response && error.response.status === 401 && error.config.withCredentials) {
+      if (await AsyncStorage.getItem('refreshToken') === null) return Promise.reject(error);
       await refreshToken();
       return axios.request(error.config);
     }
@@ -71,7 +74,7 @@ const useApi = () => {
         // setToken(data.token);
         AsyncStorage.setItem('token', data.token);
         AsyncStorage.setItem('refreshToken', data.refresh_token);
-        router.push('home');
+        router.push('(tabs)/index');
       },
       onError: (error) => {
         console.error('Login failed:', error);

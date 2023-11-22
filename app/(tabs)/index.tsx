@@ -10,6 +10,7 @@ import useApi from "../../contexts/useApi";
 import { Tournament, TournamentResponse, fetchTournaments } from "../../types/tournament";
 import { User, fetchUser } from "../../types/user";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HomeScreen() {
 

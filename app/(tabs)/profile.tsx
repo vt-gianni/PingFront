@@ -28,7 +28,9 @@ export default function ProfileScreen() {
     })
 
     const updateEditedUser = useCallback((key: keyof User, value: string) => {
-        if (value.length === 0) {
+        console.log(value);
+
+        if (String(value).length === 0) {
             setEditedUser((prev) => {
                 const { [key]: _, ...rest } = prev as User;
                 return rest;
@@ -47,9 +49,15 @@ export default function ProfileScreen() {
 
     const editUser = useCallback(async () => {
         if (!!!Object.keys(editedUser)) return;
+
+        if (editedUser.hasOwnProperty("officialPoints")) {
+            editedUser["officialPoints"] = Number(editedUser["officialPoints"]);
+        }
+
         try {
-            const response = await axios.put(`/users/${user.id}`, editedUser);
+            const response = await axios.patch(`/users/${user.id}`, editedUser, { withCredentials: true, headers: { 'Content-Type': 'application/merge-patch+json' } });
             if (response.status === 200) {
+                setEditedUser({});
                 refetch({ queryKey: "user" });
             }
         } catch (error) {

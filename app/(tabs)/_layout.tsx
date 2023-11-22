@@ -30,7 +30,7 @@ export default function TabLayout() {
             <Tabs.Screen name="index" options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="home" /> }} />
             <Tabs.Screen name="my-tournaments" listeners={{ focus: checkConnection }} options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="my-tournaments" /> }} />
             <Tabs.Screen name="profile" listeners={{ focus: checkConnection }} options={{ tabBarIcon: ({ focused }) => <TabIcon focused={focused} name="profile" /> }} />
-            <Tabs.Screen name="user-edit" options={{ href: null }} />
+            <Tabs.Screen name="tournament-details" options={{ href: null }} />
         </Tabs>
     )
 }

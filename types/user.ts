@@ -1,5 +1,10 @@
 import { AxiosStatic } from "axios";
 import { Club } from "./club";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { jwtDecode } from "jwt-decode";
+import { decode } from "base-64";
+
+global.atob = decode;
 
 export interface User {
   id?: string;
@@ -19,6 +24,12 @@ export interface User {
 }
 
 export const fetchUser = async (axios: AxiosStatic) => {
-  const response = await axios.get("/users/1", { withCredentials: true });
+  const token = await AsyncStorage.getItem("token");
+  if (!token) return null;
+  const tokenDecoded = jwtDecode<User>(token);
+
+  const response = await axios.get(`/users/${tokenDecoded.id}`, {
+    withCredentials: true,
+  });
   return response.data;
 };
