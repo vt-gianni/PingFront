@@ -8,6 +8,7 @@ import SerieCard from '../../components/SerieCard';
 import useApi from '../../contexts/useApi';
 import { Tournament, fetchTournament } from '../../types/tournament';
 import { dateParser } from '../../utils/dateParser';
+import { User, fetchUser } from '../../types/user';
 
 export default function TournamentDetailsScreen() {
 
@@ -20,6 +21,11 @@ export default function TournamentDetailsScreen() {
         queryFn: () => fetchTournament(axios, JSON.parse(data).id),
         initialData: JSON.parse(data)
     })
+
+    const { data: user, isLoading: isLoadingUser } = useQuery<User>({
+        queryKey: "user",
+        queryFn: () => fetchUser(axios)
+    });
 
     return (
         <View style={tailwind('flex-1')}>
@@ -45,11 +51,10 @@ export default function TournamentDetailsScreen() {
                     </View>
                 </View>
             </View>
-            <Text>{JSON.stringify(tournament)}</Text>
             <FlatList
-                style={tailwind('px-5')}
+                style={tailwind('p-5')}
                 data={tournament.series}
-                renderItem={({ item }) => <SerieCard item={item} />}
+                renderItem={({ item }) => <SerieCard item={item} user={user} />}
                 ListEmptyComponent={() => {
                     if (isLoadingTournament) return <Text style={tailwind('text-black text-lg text-center')}>Chargement des données ...</Text>;
                     return <Text style={tailwind('text-black text-lg text-center')}>Aucune série disponible pour ce tournoi 😢 {isLoadingTournament ? "loading" : ""}</Text>

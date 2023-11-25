@@ -28,8 +28,6 @@ export default function ProfileScreen() {
     })
 
     const updateEditedUser = useCallback((key: keyof User, value: string) => {
-        console.log(value);
-
         if (String(value).length === 0) {
             setEditedUser((prev) => {
                 const { [key]: _, ...rest } = prev as User;
@@ -81,22 +79,22 @@ export default function ProfileScreen() {
                 <View style={{ ...tailwind('w-full flex-row items-center justify-end'), gap: 10 }}>
                     <TouchableOpacity
                         style={tailwind('flex items-center justify-center border border-blue border-opacity-50 rounded-md overflow-hidden')}
-                        onPress={() => updateEditedUser("sexe", "homme")}
+                        onPress={() => updateEditedUser("sexe", "male")}
                     >
                         <MaterialCommunityIcons
                             name="human-male"
                             size={20}
-                            style={tailwind(`p-1 ${(user.sexe === "homme" || (editedUser as User).sexe === "homme") ? "text-white bg-blue" : "text-blue text-opacity-50 bg-transparent"}`)}
+                            style={tailwind(`p-1 ${(user.sexe === "male" || (editedUser as User).sexe === "male") ? "text-white bg-blue" : "text-blue text-opacity-50 bg-transparent"}`)}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={tailwind('flex items-center justify-center border border-red border-opacity-50 rounded-md overflow-hidden')}
-                        onPress={() => updateEditedUser("sexe", "femme")}
+                        onPress={() => updateEditedUser("sexe", "female")}
                     >
                         <MaterialCommunityIcons
                             name="human-female"
                             size={20}
-                            style={tailwind(`p-1 ${(user.sexe === "femme" || (editedUser as User).sexe === "femme") ? "text-white bg-red" : "text-red text-opacity-50 bg-transparent"}`)}
+                            style={tailwind(`p-1 ${(user.sexe === "female" || (editedUser as User).sexe === "female") ? "text-white bg-red" : "text-red text-opacity-50 bg-transparent"}`)}
                         />
                     </TouchableOpacity>
                 </View>
