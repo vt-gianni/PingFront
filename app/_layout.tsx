@@ -1,6 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack, router } from "expo-router";
 import { useEffect } from "react";
+import 'react-native-gesture-handler';
+import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { TailwindProvider } from "tailwind-rn";
 import utilities from "../tailwind.json";

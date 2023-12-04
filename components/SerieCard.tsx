@@ -7,15 +7,17 @@ import { useEffect, useState } from "react";
 import { dateParser } from "../utils/dateParser";
 
 const canRegisterToSerie = (serie: Serie, user: User) => {
-    if (user.sexe === "femme") {
-        if (!serie.onlyMen && serie.onlyWomen) return true;
-        if (serie.onlyWomen) return true;
-        return false;
-    }
-    if (user.sexe === "homme") {
-        if (!serie.onlyMen && serie.onlyWomen) return true;
-        if (serie.onlyMen) return true;
-        return false;
+    if (user.sexe) {
+        if (user.sexe === "femme") {
+            if (!serie.onlyMen && serie.onlyWomen) return true;
+            if (serie.onlyWomen) return true;
+            return false;
+        }
+        if (user.sexe === "homme") {
+            if (!serie.onlyMen && serie.onlyWomen) return true;
+            if (serie.onlyMen) return true;
+            return false;
+        }
     }
     return false;
 }
@@ -31,7 +33,7 @@ export default function SerieCard({ item: serie, user }: { item: Serie, user: Us
     return (
         <View style={{ ...tailwind('bg-bg_black w-full rounded-md flex-col justify-between items-center p-5'), gap: 10 }}>
             <View style={tailwind('w-full flex flex-row justify-between')}>
-                <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - {serie.onlyWomen ? "Femmes" : serie.onlyMen ? "Hommes" : serie.minPoints}</Text>
+                <SerieTitle serie={serie} />
                 {
                     canRegisterToSerie &&
                     <Text style={tailwind('text-blue text-3xl font-bold py-1')}>{serie.price} €</Text>
@@ -48,4 +50,17 @@ export default function SerieCard({ item: serie, user }: { item: Serie, user: Us
             </View>
         </View >
     )
+}
+
+function SerieTitle({ serie }: { serie: Serie }) {
+
+    const tailwind = useTailwind();
+
+    if (serie.onlyMen) return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - Homme</Text>
+    if (serie.onlyWomen) return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - Femme</Text>
+    if (serie.minPoints && !serie.maxPoints) return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - {serie.minPoints} points et +</Text>
+    if (!serie.minPoints && serie.maxPoints) return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - {serie.maxPoints} points et -</Text>
+    if (serie.minPoints && serie.maxPoints) return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série - {serie.minPoints} à {serie.maxPoints} points</Text>
+
+    return <Text style={tailwind('text-white text-xl font-bold py-1')}>Série</Text>
 }

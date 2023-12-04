@@ -1,7 +1,9 @@
 import { FontAwesome } from "@expo/vector-icons";
-import { AxiosStatic } from "axios";
+import { MotiView } from "moti";
+import { Skeleton } from "moti/skeleton";
 import { useEffect, useState } from "react";
 import { FlatList, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { useQuery } from "react-query";
 import { useTailwind } from "tailwind-rn";
 import Avatar from "../../components/Avatar";
@@ -9,8 +11,6 @@ import TournamentCard from "../../components/TournamentCard";
 import useApi from "../../contexts/useApi";
 import { Tournament, TournamentResponse, fetchTournaments } from "../../types/tournament";
 import { User, fetchUser } from "../../types/user";
-import { router } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HomeScreen() {
 
@@ -42,7 +42,24 @@ export default function HomeScreen() {
             {
                 (isLoadingUser || !user) ?
                     (
-                        null
+                        <MotiView
+                            transition={{
+                                type: "no-animation"
+                            }}
+                            animate={{
+                                ...tailwind('bg-bg_black')
+                            }}
+                            style={{ ...tailwind('p-5 py-10 bg-bg_black flex-row justify-between items-center'), paddingTop: StatusBar.currentHeight + 10 }}
+                        >
+                            <MotiView>
+                                <Skeleton width={"70%"} colorMode="light" />
+                                <View style={{ height: 8 }} />
+                                <Skeleton width={"70%"} colorMode="light" />
+                                <View style={{ height: 8 }} />
+                                <Skeleton width={"70%"} colorMode="light" />
+                            </MotiView>
+                            <Skeleton width={70} height={70} radius={"round"} colorMode="light" />
+                        </MotiView>
                     )
                     :
                     (
@@ -71,7 +88,7 @@ export default function HomeScreen() {
                 </Text>
                 <TouchableOpacity
                     style={tailwind('px-5 flex items-center justify-center')}
-                    onPress={() => router.push('user-edit')}
+                    onPress={() => { }}
                 >
                     <FontAwesome name="sliders" size={28} />
                 </TouchableOpacity>

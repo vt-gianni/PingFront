@@ -1,5 +1,6 @@
 import { AxiosStatic } from "axios";
 import { Serie } from "./serie";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface Tournament {
   id?: string;
@@ -24,11 +25,17 @@ export interface TournamentResponse {
 }
 
 export const fetchTournaments = async (axios: AxiosStatic) => {
+  const token = await AsyncStorage.getItem("token");
+  if (!token) return null;
+
   const response = await axios.get("/tournaments", { withCredentials: true });
   return response.data;
 };
 
 export const fetchTournament = async (axios: AxiosStatic, id: string) => {
+  const token = await AsyncStorage.getItem("token");
+  if (!token) return null;
+
   const response = await axios.get(`/tournaments/${id}`, {
     withCredentials: true,
   });

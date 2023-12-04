@@ -151,11 +151,6 @@
 			"justifyContent": "space-between"
 		}
 	},
-	"self-end": {
-		"style": {
-			"alignSelf": "flex-end"
-		}
-	},
 	"self-center": {
 		"style": {
 			"alignSelf": "center"
@@ -294,6 +289,12 @@
 			"paddingRight": 20
 		}
 	},
+	"px-8": {
+		"style": {
+			"paddingLeft": 32,
+			"paddingRight": 32
+		}
+	},
 	"py-1": {
 		"style": {
 			"paddingTop": 4,
@@ -312,28 +313,6 @@
 			"paddingBottom": 8
 		}
 	},
-	"py-4": {
-		"style": {
-			"paddingTop": 16,
-			"paddingBottom": 16
-		}
-	},
-	"px-8": {
-		"style": {
-			"paddingLeft": 32,
-			"paddingRight": 32
-		}
-	},
-	"pt-2": {
-		"style": {
-			"paddingTop": 8
-		}
-	},
-	"pt-5": {
-		"style": {
-			"paddingTop": 20
-		}
-	},
 	"text-center": {
 		"style": {
 			"textAlign": "center"
@@ -343,6 +322,18 @@
 		"style": {
 			"fontSize": 24,
 			"lineHeight": 32
+		}
+	},
+	"text-3xl": {
+		"style": {
+			"fontSize": 30,
+			"lineHeight": 36
+		}
+	},
+	"text-base": {
+		"style": {
+			"fontSize": 16,
+			"lineHeight": 24
 		}
 	},
 	"text-lg": {
@@ -357,22 +348,10 @@
 			"lineHeight": 20
 		}
 	},
-	"text-base": {
-		"style": {
-			"fontSize": 16,
-			"lineHeight": 24
-		}
-	},
 	"text-xl": {
 		"style": {
 			"fontSize": 20,
 			"lineHeight": 28
-		}
-	},
-	"text-3xl": {
-		"style": {
-			"fontSize": 30,
-			"lineHeight": 36
 		}
 	},
 	"font-bold": {
