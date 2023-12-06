@@ -1,4 +1,39 @@
 {
+	"fixed": {
+		"style": {
+			"position": "fixed"
+		}
+	},
+	"absolute": {
+		"style": {
+			"position": "absolute"
+		}
+	},
+	"bottom-0": {
+		"style": {
+			"bottom": 0
+		}
+	},
+	"left-0": {
+		"style": {
+			"left": 0
+		}
+	},
+	"right-0": {
+		"style": {
+			"right": 0
+		}
+	},
+	"top-0": {
+		"style": {
+			"top": 0
+		}
+	},
+	"z-50": {
+		"style": {
+			"zIndex": 50
+		}
+	},
 	"mb-5": {
 		"style": {
 			"marginBottom": 20
@@ -151,6 +186,11 @@
 			"justifyContent": "space-between"
 		}
 	},
+	"justify-around": {
+		"style": {
+			"justifyContent": "space-around"
+		}
+	},
 	"self-center": {
 		"style": {
 			"alignSelf": "center"
@@ -261,6 +301,23 @@
 			"backgroundColor": "transparent"
 		}
 	},
+	"bg-black": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(0 0 0 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-white": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(255 255 255 / var(--tw-bg-opacity))"
+		}
+	},
+	"bg-opacity-50": {
+		"style": {
+			"--tw-bg-opacity": 0.5
+		}
+	},
 	"p-1": {
 		"style": {
 			"paddingTop": 4,
@@ -313,6 +370,30 @@
 			"paddingBottom": 8
 		}
 	},
+	"py-5": {
+		"style": {
+			"paddingTop": 20,
+			"paddingBottom": 20
+		}
+	},
+	"px-3": {
+		"style": {
+			"paddingLeft": 12,
+			"paddingRight": 12
+		}
+	},
+	"px-1": {
+		"style": {
+			"paddingLeft": 4,
+			"paddingRight": 4
+		}
+	},
+	"px-2": {
+		"style": {
+			"paddingLeft": 8,
+			"paddingRight": 8
+		}
+	},
 	"text-center": {
 		"style": {
 			"textAlign": "center"
@@ -352,6 +433,17 @@
 		"style": {
 			"fontSize": 20,
 			"lineHeight": 28
+		}
+	},
+	"text-5xl": {
+		"style": {
+			"fontSize": 48,
+			"lineHeight": 1
+		}
+	},
+	"text-[14px]": {
+		"style": {
+			"fontSize": 14
 		}
 	},
 	"font-bold": {
@@ -398,6 +490,16 @@
 		"style": {
 			"--tw-text-opacity": 1,
 			"color": "rgb(255 255 255 / var(--tw-text-opacity))"
+		}
+	},
+	"text-[14]": {
+		"style": {
+			"color": 14
+		}
+	},
+	"text-[17]": {
+		"style": {
+			"color": 17
 		}
 	},
 	"text-opacity-50": {
