@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PingContest",
-    "slug": "PingContest",
+    "slug": "pingcontest",
     "scheme": "pingcontest",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -26,6 +26,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a78b0428-6f4b-43f4-9e6b-2a74d705d2c2"
+      }
+    },
+    "owner": "devteamadgg",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a78b0428-6f4b-43f4-9e6b-2a74d705d2c2"
     }
   }
 }
