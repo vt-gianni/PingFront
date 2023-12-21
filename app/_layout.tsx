@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { TailwindProvider } from "tailwind-rn";
 import utilities from "../tailwind.json";
+import Toast, { BaseToast } from "react-native-toast-message";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,9 @@ export default function Layout() {
                     <Stack.Screen name="registerpro" options={{ headerShown: false }} />
                     <Stack.Screen name="tutorial" options={{ headerShown: false }} />
                 </Stack>
+                <Toast 
+                    position="top"
+                />
             </QueryClientProvider>
         </TailwindProvider>
     )

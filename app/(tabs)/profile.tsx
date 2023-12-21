@@ -10,6 +10,7 @@ import useApi from "../../contexts/useApi";
 import { ClubResponse, fetchClubs } from "../../types/club";
 import { User, fetchUser } from "../../types/user";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import Toast from "react-native-toast-message";
 
 export default function ProfileScreen() {
     const { axios } = useApi();
@@ -57,6 +58,11 @@ export default function ProfileScreen() {
             if (response.status === 200) {
                 setEditedUser({});
                 refetch({ queryKey: "user" });
+                Toast.show({
+                    type: "success",
+                    text1: "Informations modifiées",
+                    text2: "Vos informations ont bien été modifiées"
+                })
             }
         } catch (error) {
             console.log("ERROR", error);
