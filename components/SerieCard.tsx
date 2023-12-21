@@ -8,23 +8,37 @@ import { User } from "../types/user";
 import { dateParser } from "../utils/dateParser";
 
 const canRegisterToSerie = (serie: Serie, user: User) => {
+    let caseRegistered = true;
     if (serie.usersRegistered) {
-        if (serie.usersRegistered.filter((userRegistered) => userRegistered.id === user.id).length > 0) return false;
+        if (serie.usersRegistered.filter((userRegistered) => userRegistered.id === user.id).length > 0) caseRegistered = false;
     }
+
+    let caseSex = false;
     if (user.sexe) {
         if (user.sexe === "female") {
-            if (!serie.onlyMen && !serie.onlyWomen) return true;
-            if (!serie.onlyMen && serie.onlyWomen) return true;
-            return false;
+            if (!serie.onlyMen && !serie.onlyWomen) caseSex = true;
+            if (!serie.onlyMen && serie.onlyWomen) caseSex = true;
         }
 
         if (user.sexe === "male") {
-            if (!serie.onlyWomen && !serie.onlyMen) return true;
-            if (!serie.onlyWomen && serie.onlyMen) return true;
-            return false;
+            if (!serie.onlyWomen && !serie.onlyMen) caseSex = true;
+            if (!serie.onlyWomen && serie.onlyMen) caseSex = true;
         }
     }
-    return false;
+    if (!user.sexe && !serie.onlyWomen && !serie.onlyMen) caseSex = true;
+
+    let casePoints = false;
+    if (user.officialPoints) {
+        if (serie.minPoints) {
+            if (user.officialPoints >= serie.minPoints) casePoints = true;
+        }
+        if (serie.maxPoints) {
+            if (user.officialPoints <= serie.maxPoints) casePoints = true;
+        }
+    }
+    if (!user.officialPoints && !serie.minPoints && !serie.maxPoints) casePoints = true;
+
+    return caseRegistered && caseSex && casePoints;
 }
 
 const haveToPaySerie = (serie: Serie, user: User) => {

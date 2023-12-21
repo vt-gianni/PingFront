@@ -9,10 +9,10 @@ export interface Serie {
   beginDateTime: string;
   isHandicap: boolean;
   isOpen: boolean;
-  minAge: number;
-  maxAge: number;
-  minPoints: number;
-  maxPoints: number;
+  minAge?: number;
+  maxAge?: number;
+  minPoints?: number;
+  maxPoints?: number;
   onlyMen: boolean;
   onlyWomen: boolean;
   minPlaces: number;
